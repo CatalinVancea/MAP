@@ -2,11 +2,11 @@ package repository;
 
 import entity.Task;
 
-public class ContainerFifo implements Container {
+public class ContainerLifo implements Container {
     private Task[] tasks;
     private int size;
 
-    public ContainerFifo(){
+    public ContainerLifo(){
         tasks=new Task[10];
         size=0;
     }
@@ -36,8 +36,8 @@ public class ContainerFifo implements Container {
         }
         else {
             Task firstTask = tasks[0];
-            for(int i=0; i<(size-1); i++)
-                tasks[i] = tasks[i+1];
+            for(int i=size-1;i>0;i--)
+                tasks[i]=tasks[i-1];
             size--;
             return firstTask;
         }

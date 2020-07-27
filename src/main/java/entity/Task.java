@@ -4,15 +4,19 @@ package entity;
  * Definiti clasa abstracta Task avand atributele: taskID, descriere(string)
  * si metodele: un constructor cu parametrii, set/get, execute(abstracta), toString
  * Clasa Task este o clasa abstracta de baza care descrie entitatiile
- *
  */
-public abstract class Task{
+public abstract class Task extends Entity<String> {
     private String taskID;
     private String descriere;
 
     public Task(String taskID, String descriere) {
+        super(taskID);
         this.taskID=taskID;
         this.descriere=descriere;
+    }
+
+    public int hashCode(){
+        return id.hashCode();
     }
 
     public void setID(String taskID) {

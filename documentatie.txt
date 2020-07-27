@@ -1,0 +1,113 @@
+------------------------------------------------------------------------------------
+Grigo:
+	- seminariile 1-4 concatenate aici		
+
+////////////////////////////////////////////////////////////////////////////////////
+	- Entity:
+		- Entity<ID>:
+			- clasa concreta
+			- defineste operatiile pe ID-ul entitatii
+		- Task:
+			- clasa abstracta
+			- extinde Entity<String>
+			- ID = String
+			- suprascrie metode din clasa Object
+			- lasa metoda "execute" abstracta
+			- id, descriere
+		- MessageTask:
+			- clasa concreta
+			- extinde si implementeaza Task
+			- id, descriere, message, from, to, date
+			- "execute" va afisa "trimiterea" mesajului
+		- ValidatorException:
+			- clasa concreta
+			- extinde Exception
+		- Validator:
+			- interfata
+			- defineste signatura metodei "validate" si ce eroare arunca
+				(ValidatorException)
+		- MessageValidator:
+			- classa concreta
+			- "defineste" metoda "validate" cu toate normele de validare
+
+////////////////////////////////////////////////////////////////////////////////////
+	- Repository:
+		- Container:
+			- interfata
+			- descrie containerul folosit pentru repository
+		- ContainerLifo:
+			- clasa concreta
+			- implementarea interfetei Container
+			- implementeaza un TAD LIFO
+		- StackContainer:
+			- clasa concreta
+			- implementarea interfetei Container
+			- implementeaza un TAD Stack
+
+		- Repository<ID, E extends Entity<ID>>:
+			- interfata
+			- descrie operatiile de care va dispune repository-ul
+		- AbstractRepository<ID, E extends Entity<ID>>:
+			- clasa abstracta
+			- implementeaza in totalitate interfata Repository
+			- salveaza intr-un Map<ID, E>
+			- salavarea se face deja InMemory
+			- conditioneaza ca entitatile stocate sa extinda Entity
+				"E extends clasa Entity<ID>"
+		- MessageTaskRepo:
+			- clasa concreta
+			- extinde AbstractRepository
+			- decide Validatorul
+		- FileRepository:
+			- clasa concreta
+			- extinde MessageTaskRepo
+			- se incearca salvarea in Fisier
+
+////////////////////////////////////////////////////////////////////////////////////
+	- Service:
+		- Factory:
+			- interfata
+			- schiteaza modelul Factory
+		- StrategyTaskContainer:
+			- defineste modelul Factory
+			- modelul Factory te lasa sa alegi intre Stack/Lifo
+
+		- TaskRunner:
+			- interfata
+			- defineste ce ar trebui sa pot face cu o lista de Task-uri
+		- StrategyTaskRunner:
+			- clasa concreta
+			- implementeaza metodele interfetei TaskRunner
+			- primeste strategia de construire a Repository-ului
+				si costruieste un Repo dupa strategie pe baza
+				caruia va aplica clasele definite dupa interfata
+				TaskRunner	
+		- AbstractTaskRunner:
+			- clasa abstracta
+			- implementeaza metodele interfetei TaskRunner
+		- PrintTaskRunner:
+			- clasa concreta
+			- suprascrie metodele lui AbstractTaskRunner
+
+////////////////////////////////////////////////////////////////////////////////////
+	- Colectii_generics:
+		- Student:
+			- clasa concreta
+			- descrie cine este un Student
+			- implementeaza Comparable<Student>
+			- suprascrie compareTo(Student o)		
+		- Desc:
+			- implementeaza Comparator
+			- suprascrie compare(Student s1, Student s2)
+		- MyMap:
+			- "implementez" un Map
+		- Main2:
+			- test1:
+				- teste cu StrategyTaskRunner
+				- teste cu Print TaskRunner
+			- test2:
+				- teste cu Map si Set
+			- test3:
+				- teste cu MyMap si Desc
+
+////////////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-package service;
+package service.repo;
 
 import repository.Container;
 import utils.Strategy;

@@ -4,6 +4,7 @@ import entity.Task;
 
 public abstract class AbstractTaskRunner implements TaskRunner {
     private TaskRunner runner;
+
     public AbstractTaskRunner(TaskRunner t) {
         runner = t;
     }
