@@ -4,14 +4,14 @@ import entity.Task;
 
 public abstract class AbstractTaskRunner implements TaskRunner {
     private TaskRunner runner;
-    public void AbstractTaskRunner(TaskRunner t) {
+    public AbstractTaskRunner(TaskRunner t) {
         runner = t;
     }
     public void executeOneTask(){
         runner.executeOneTask();
     }
     public void executeAll(){
-        runner.executeOneTask();
+        runner.executeAll();
     }
     public boolean hasTask(){
         return runner.hasTask();
